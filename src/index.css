@@ -1,0 +1,176 @@
+:root {
+  --ink: #000;
+  --paper: #f4f4f4;
+  --accent: #e0ff00;
+  --warning: #ff3e00;
+  --success: #00cf64;
+  --thickness: 4px;
+}
+
+/* I enforce consistency everywhere */
+* {
+  box-sizing: border-box;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Overall system frame */
+.main-interface {
+  display: flex;
+  height: 100dvh;
+  width: 100vw;
+  border: var(--thickness) solid var(--ink);
+}
+
+/* Control panel */
+.control-deck {
+  width: 300px;
+  padding: 1.4rem;
+  border-right: var(--thickness) solid var(--ink);
+  background: #ebebeb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Game area */
+.grid-viewport {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Always square, always centered */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: min(85vw, 85vh);
+  height: min(85vw, 85vh);
+  max-width: 600px;
+  max-height: 600px;
+}
+
+/* Card shell */
+.brutal-card {
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+/* Flip logic */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+  transform-style: preserve-3d;
+}
+
+.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Faces */
+.card-face {
+  position: absolute;
+  inset: 0;
+  border: calc(var(--thickness) / 2) solid var(--ink);
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.front {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.back {
+  background: var(--accent);
+  transform: rotateY(180deg);
+  font-weight: 900;
+  font-size: 1.6rem;
+}
+
+.matched .back {
+  background: var(--success);
+  color: white;
+}
+
+.error .back {
+  background: var(--warning);
+  color: white;
+}
+
+/* Buttons */
+.brutal-btn {
+  border: var(--thickness) solid var(--ink);
+  background: white;
+  font-weight: 900;
+  padding: 1rem;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.brutal-btn.primary {
+  background: var(--warning);
+  color: white;
+}
+
+.brutal-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+/* Victory state */
+.victory-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: grid;
+  place-items: center;
+}
+
+.victory-modal {
+  background: var(--paper);
+  border: var(--thickness) solid var(--ink);
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Mobile refinement */
+@media (max-width: 900px) {
+  .main-interface {
+    flex-direction: column;
+  }
+
+  .control-deck {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .grid-container {
+    width: 92vw;
+    height: 92vw;
+  }
+}
+
+/* Glitch feedback */
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(4px,-4px); }
+  75% { transform: translate(-4px,4px); }
+}
+
+.glitch-active {
+  animation: shake 0.12s infinite;
+}
