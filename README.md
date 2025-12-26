@@ -29,23 +29,6 @@ The interface is designed like a **system console** — sharp borders, strong hi
 * Vanilla CSS — handcrafted Neo-Brutalist styling
 * GitHub Pages — deployment
 
----
-
-## 📂 Project Structure
-
-mem-scan/
-├── index.html
-├── public/
-├── src/
-│   ├── App.jsx
-│   ├── main.jsx
-│   ├── styles.css
-│   └── components/
-│       ├── Card.jsx
-│       └── GameHeader.jsx
-├── vite.config.js
-├── package.json
-└── README.md
 
 ---
 
@@ -62,7 +45,7 @@ Start the development server:
 npm run dev
 ```
 The app will be available at:
-[http://localhost:5173](http://localhost:5173)
+[CLICK HERE](https://dhruvdesai793.github.io/MEM_SCAN/)
 
 ---
 
@@ -128,7 +111,9 @@ Every interaction is intentional and deliberate.
 Dhruv Desai
 
 GitHub: [https://github.com/Dhruvdesai793](https://github.com/Dhruvdesai793)
+
 LinkedIn: [https://www.linkedin.com/in/dhruv-desai-b0779b370/](https://www.linkedin.com/in/dhruv-desai-b0779b370/)
+
 X (Twitter): [@Noctravellian](https://x.com/Noctravellian)
 
 
